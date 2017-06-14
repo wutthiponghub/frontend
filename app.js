@@ -5,36 +5,12 @@ app.config(function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
     $routeProvider
         .when("/", {
-            templateUrl: "auth/auth.html",
-            controller: "authController"
+            templateUrl: "menu/menu.html",
+            controller: "menuController"
         })
-        .when("/profile", {
-            templateUrl: "profile/profile.html",
-            controller: "profileController"
-        })
-        .when("/bakery", {
-            templateUrl: "bakery/bakery.html",
-            controller: "bakeryController"
-        })
-        .when("/bakerytype", {
-            templateUrl: "bakerytype/bakerytype.html",
-            controller: "bakerytypeController"
-        })
-        .when("/drink", {
-            templateUrl: "drink/drink.html",
-            controller: "drinkController"
-        })
-        .when("/drinktype", {
-            templateUrl: "drinktype/drinktype.html",
-            controller: "drinktypeController"
-        })
-        .when("/page1", {
-            templateUrl: "page1/page1.html",
-            controller: "page1Controller"
-        })
-        .when("/page2", {
-            templateUrl: "page2/page2.html",
-            controller: "page2Controller"
+        .when("/menu", {
+            templateUrl: "menu/menu.html",
+            controller: "menuController"
         })
         .otherwise({
             redirectTo: '/'
@@ -50,26 +26,6 @@ app.controller('navController', function($scope, $location) {
     $scope.isActive = function(viewLocation) {
         return viewLocation === $location.path();
     };
-});
-
-
-app.service('bmidatajson', function($http, $q, $firebaseArray) {
-    this.getData = function() {
-        var deferred = $q.defer();
-        $http.get('https://www.appstudio.space/angularjs/workshop/api/bmidata.php')
-            .then(function(response) {
-                deferred.resolve(response.data);
-            })
-            .catch(function(response) {
-                deferred.reject(response);
-            });
-        return deferred.promise;
-    }
-
-    this.getDataFromFirebase = function() {
-        var ref = firebase.database().ref().child("bmidata");
-        return $firebaseArray(ref);
-    }
 });
 
 

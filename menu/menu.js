@@ -1,4 +1,4 @@
-app.controller('drinkController', function($scope, FBoperation) {
+app.controller('menuController', function($scope, FBoperation) {
 
     $scope.drinktype = FBoperation.getData('drinktype');
 

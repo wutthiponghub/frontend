@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Workshop2</title>
+    <title>Workshop3</title>
     <base href="http://127.0.0.1:8080/" />
     <!--<base href="https://www.appstudio.space/angularjs/workshop/backend/" />-->
 
@@ -21,14 +21,7 @@
 
     <!--Controller-->
     <script src="auth/auth.js"></script>
-    <script src="profile/profile.js"></script>
-    <script src="page1/page1.js"></script>
-    <script src="page2/page2.js"></script>
-    <script src="bakery/bakery.js"></script>
-    <script src="bakerytype/bakerytype.js"></script>
-    <script src="drink/drink.js"></script>
-    <script src="drinktype/drinktype.js"></script>
-
+    <script src="menu/menu.js"></script>
 
     <!--Library-->
     <script src="js/jquery-3.2.1.min.js"></script>
@@ -68,7 +61,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-                <a class="navbar-brand" href="/">Backend</a>
+                <a class="navbar-brand" href="/">Frontend</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -85,32 +78,13 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-3 col-md-2 col-lg-2 sidebar" ng-if="uid">
-                <ul class="nav nav-sidebar">
-                    <li ng-class="{ active: isActive('/page1')}"><a href="page1"><span class="glyphicon glyphicon-tasks"></span> Page1 <span class="sr-only">(current)</span></a></li>
-                    <li ng-class="{ active: isActive('/page2')}"><a href="page2"><span class="glyphicon glyphicon-tasks"></span> Page2</a></li>
-                    <li>
-                        <a href="#" data-toggle="collapse" data-target="#bakery" aria-expanded="false" aria-controls="collapseExample">
-                            <span class="glyphicon glyphicon-list-alt"></span> Bakery Management</a>
-                    </li>
-                    <div class="collapse" id="bakery">
-                        <ul class="nav nav-subsidebar">
-                            <li ng-class="{ active: isActive('/bakery')}"><a href="bakery">- Bakery</a></li>
-                            <li ng-class="{ active: isActive('/bakerytype')}"><a href="bakerytype">- Bakery Type</a></li>
-                        </ul>
-                    </div>
-                    <li><a href="#" data-toggle="collapse" data-target="#drink" aria-expanded="false" aria-controls="collapseExample"><span class="glyphicon glyphicon-list-alt"></span> Drink Management</a></li>
-                    <div class="collapse" id="drink">
-                        <ul class="nav nav-subsidebar">
-                            <li ng-class="{ active: isActive('/drink')}"><a href="drink">- Drink</a></li>
-                            <li ng-class="{ active: isActive('/drinktype')}"><a href="drinktype">- Drink Type</a></li>
-                        </ul>
-                    </div>
-                </ul>
-            </div>
-            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 col-lg-10 col-lg-offset-2 main">
+            <div class="col-sm-8 col-md-9 col-lg-9 main">
                 <ng-view></ng-view>
             </div>
+            <div class="col-sm-4 col-md-3 col-lg-3 sidebar">
+
+            </div>
+
         </div>
     </div>
 
