@@ -1,0 +1,38 @@
+<h2>ตารางแปลผลค่า BMI</h2>
+<div class="form-group">
+    <label for="filter">Filter</label>
+    <input type="text" ng-model="textfilter" class="form-control" id="filter" placeholder="Filter by input text">
+</div>
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <td><strong>BMI kg/m2</strong></td>
+            <td><strong>อยู่ในเกณท์</strong></td>
+            <td><strong>ภาวะเสี่ยงต่อโรค</strong></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="tmp in bmidata | filter: textfilter  | orderBy: 'risk'" ng-class="tmp.css">
+            <td>มากกว่า {{tmp.min}} แต่น้อยกว่า {{tmp.max}}</td>
+            <td>{{tmp.meaning}}</td>
+            <td>{{tmp.risk}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="text-center" ng-init="h=190;w=70;">
+    <form ng-submit="bmicalculator()">
+        <div class="form-group">
+            <label for="weight">Weight (KG)</label>
+            <input required type="number" ng-model="w" ng-change="bmicalculator()" class="form-control" id="weight" placeholder="Please input your weight (KG)">
+        </div>
+        <div class="form-group">
+            <label for="height">Height (CM)</label>
+            <input required type="number" ng-model="h" ng-change="bmicalculator()" class="form-control" id="height" placeholder="Please input your height (KG)">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="button" ng-click="resetBMI()" class="btn btn-default">Reset</button>
+    </form>
+    <h1 ng-if="bmi > 0 && bmi <= 100"> <span id="numberanimation" ng-bind="bmi | number:2"> </span> {{meaning}}</h1>
+    {{w / (h/100 * h/100) | number:2}}
+</div>

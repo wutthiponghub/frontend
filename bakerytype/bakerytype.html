@@ -1,0 +1,53 @@
+<h2>Bakery Type</h2>
+<table id="bakerytypetable" ng-init="load()" class="table table-hover table-bordered" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Operation</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="data in bakerytype">
+            <td>{{data.id}}</td>
+            <td>{{data.name}}</td>
+            <td class="text-center" width="5%">
+                <a ng-click="operation(data,'edit')"><span class="glyphicon glyphicon-edit pointerlink"></span></a> <a ng-click="operation(data.id,'delete');"><span class="glyphicon glyphicon-trash pointerlink"></span></a>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td align="center"><input type="text" class="column_filter form-control" id="col0_filter" data-column="0"></td>
+            <td align="center"><input type="text" class="column_filter form-control" id="col1_filter" data-column="1"></td>
+            <td class="text-center" width="5%">
+                <button ng-click="resetForm();show=true;action='add'" type="button" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-plus"></span> Add
+                </button>
+            </td>
+        </tr>
+    </tfoot>
+
+
+</table>
+
+<div ng-if="show==true" class="inputForm">
+    <form ng-submit="operation(tmp,action)">
+        <p ng-if="edit==false" class="text-center"><strong>Add Bakery Type</strong></p>
+        <p ng-if="edit==true" class="text-center"><strong>Update Bakery Type</strong></p>
+        <div class="form-group" ng-if="edit==true">
+            <label for="id">ID</label>
+            <input readonly type="text" ng-model="tmp.id" class="form-control" id="id">
+        </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input required type="text" ng-model="tmp.name" class="form-control" id="name" placeholder="Please input name">
+        </div>
+        <div class="form-group">
+            <p class="text-center">
+                <button type="submit" ng-if="show==true && edit==false" class="btn btn-primary"> <span class="glyphicon glyphicon-plus"></span> Add </button>
+                <button type="submit" ng-if="edit==true" class="btn btn-primary"> <span class="glyphicon glyphicon-pencil"></span> Update </button>
+            </p>
+        </div>
+    </form>
+</div>

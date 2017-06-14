@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Workshop2</title>
+    <base href="http://127.0.0.1:8080/" />
+    <!--<base href="https://www.appstudio.space/angularjs/workshop/backend/" />-->
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/my.css" rel="stylesheet">
+
+
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.min.js"></script>
+    <script src="app.js"></script>
+
+
+
+    <!--Controller-->
+    <script src="auth/auth.js"></script>
+    <script src="profile/profile.js"></script>
+    <script src="page1/page1.js"></script>
+    <script src="page2/page2.js"></script>
+    <script src="bakery/bakery.js"></script>
+    <script src="bakerytype/bakerytype.js"></script>
+    <script src="drink/drink.js"></script>
+    <script src="drinktype/drinktype.js"></script>
+
+
+    <!--Library-->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.animateNumber.min.js"></script>
+
+    <!--DataTable-->
+    <script src="js/jquery.dataTables.min.js"></script>
+    <script src="js/dataTables.bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/dataTables.bootstrap.min.css">
+
+    <!-- AngularFire -->
+    <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCsHOxLm1z91Nr9P8eBJ953wQIiMfJcqnA",
+            authDomain: "angularjsworkshop-f7bbf.firebaseapp.com",
+            databaseURL: "https://angularjsworkshop-f7bbf.firebaseio.com",
+            projectId: "angularjsworkshop-f7bbf",
+            storageBucket: "angularjsworkshop-f7bbf.appspot.com",
+            messagingSenderId: "372092128565"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+
+</head>
+
+<body ng-controller="navController">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+                <a class="navbar-brand" href="/">Backend</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li ng-show="uid"><a href="profile">Profile</a></li>
+                </ul>
+                <!--<form class="navbar-form navbar-right">
+                    <input type="text" class="form-control" placeholder="Search...">
+                </form>-->
+            </div>
+        </div>
+    </nav>
+
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 col-lg-2 sidebar" ng-if="uid">
+                <ul class="nav nav-sidebar">
+                    <li ng-class="{ active: isActive('/page1')}"><a href="page1"><span class="glyphicon glyphicon-tasks"></span> Page1 <span class="sr-only">(current)</span></a></li>
+                    <li ng-class="{ active: isActive('/page2')}"><a href="page2"><span class="glyphicon glyphicon-tasks"></span> Page2</a></li>
+                    <li>
+                        <a href="#" data-toggle="collapse" data-target="#bakery" aria-expanded="false" aria-controls="collapseExample">
+                            <span class="glyphicon glyphicon-list-alt"></span> Bakery Management</a>
+                    </li>
+                    <div class="collapse" id="bakery">
+                        <ul class="nav nav-subsidebar">
+                            <li ng-class="{ active: isActive('/bakery')}"><a href="bakery">- Bakery</a></li>
+                            <li ng-class="{ active: isActive('/bakerytype')}"><a href="bakerytype">- Bakery Type</a></li>
+                        </ul>
+                    </div>
+                    <li><a href="#" data-toggle="collapse" data-target="#drink" aria-expanded="false" aria-controls="collapseExample"><span class="glyphicon glyphicon-list-alt"></span> Drink Management</a></li>
+                    <div class="collapse" id="drink">
+                        <ul class="nav nav-subsidebar">
+                            <li ng-class="{ active: isActive('/drink')}"><a href="drink">- Drink</a></li>
+                            <li ng-class="{ active: isActive('/drinktype')}"><a href="drinktype">- Drink Type</a></li>
+                        </ul>
+                    </div>
+                </ul>
+            </div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 col-lg-10 col-lg-offset-2 main">
+                <ng-view></ng-view>
+            </div>
+        </div>
+    </div>
+
+    <!--
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted text-right">Place sticky footer content here.</p>
+        </div>
+    </footer>-->
+
+</body>
+
+</html>
