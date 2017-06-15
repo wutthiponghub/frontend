@@ -20,8 +20,13 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3" ng-repeat="data in type | filter:selectedsubtype">
-                    {{data.name}}
+                <div class="col-md-4" ng-repeat="data in type | filter:selectedsubtype">
+                    <div class="thumbnail">
+                        <img class="img-responsive" ng-src="../imgmenu/{{selectedtype}}/{{data.name}}.JPG">
+                        <div class="caption">
+                            <p class="text-center">{{data.name}}<br>{{data.price}} บาท</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

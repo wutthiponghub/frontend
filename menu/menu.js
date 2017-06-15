@@ -49,7 +49,7 @@ app.controller('menuController', function($scope, FBoperation, DBoperation) {
     $scope.drink = FBoperation.getData('drink');
     $scope.drink.$loaded()
         .then(function() {
-
+            $scope.resetMenu();
         });
 
     // $scope.drink.$watch(function(a) {
@@ -61,8 +61,8 @@ app.controller('menuController', function($scope, FBoperation, DBoperation) {
     // });
 
 
-    $scope.resetForm = function() {
-
+    $scope.resetMenu = function() {
+        $scope.selectType('bakery');
     };
 
 
