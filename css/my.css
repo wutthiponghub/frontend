@@ -9,22 +9,6 @@ body {
     padding-top: 50px;
 }
 
-
-/*
- * Global add-ons
- */
-
-.sub-header {
-    padding-bottom: 10px;
-    border-bottom: 1px solid #eee;
-}
-
-
-/*
- * Top navigation
- * Hide default border to remove 1px line.
- */
-
 .navbar-fixed-top {
     border: 0;
 }
@@ -34,28 +18,7 @@ body {
 }
 
 .sidebar {
-    padding: 10px;
+    padding-left: 10px;
     background-color: lightyellow;
     height: 100vh;
-}
-
-
-/* Not required for template or sticky footer method. */
-
-.container .text-muted {
-    margin: 20px 0;
-    text-align: center;
-}
-
-.footer>.container {
-    padding-right: 15px;
-    padding-left: 15px;
-}
-
-code {
-    font-size: 80%;
-}
-
-.pointerlink {
-    cursor: pointer;
 }

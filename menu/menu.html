@@ -1,72 +1,33 @@
-<h2>drink</h2>
-<table id="drinktable" class="table table-hover table-bordered" cellspacing="0" width="100%">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Type</th>
-            <th>Operation</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="data in drink">
-            <td>{{data.name}}</td>
-            <td>{{data.price}}</td>
-            <td>{{data.type}}</td>
-            <td class="text-center" width="5%">
-                <a ng-click="operation(data,'edit')"><span class="glyphicon glyphicon-edit pointerlink"></span></a>
-                <a confirmed-click="drink.$remove(data)" ng-confirm-click="Are you sure to delete?">
-                    <span class="glyphicon glyphicon-trash pointerlink"></span>
-                </a>
-            </td>
-        </tr>
-    </tbody>
-    <tfoot>
-        <tr>
-            <td align="center"><input type="text" class="column_filter form-control" id="col0_filter" data-column="0"></td>
-            <td align="center"><input type="text" class="column_filter form-control" id="col1_filter" data-column="1"></td>
-            <td align="center">
-                <select class="column_filter form-control" id="col2_filter" data-column="2">
-                      <option value="">-- All --</option> 
-                      <option ng-repeat="option in drinktype" value="{{option.name}}" >{{option.name}}</option>  
-                </select>
-            </td>
-            <td class="text-center" width="5%">
-                <button ng-click="resetForm();show=true;action='add'" type="button" class="btn btn-default btn-sm">
-                    <span class="glyphicon glyphicon-plus"></span> Add
-                </button>
-            </td>
-        </tr>
-    </tfoot>
-
-
-</table>
-
-<div ng-if="show==true" class="inputForm">
-    <form ng-submit="operation(tmp,action)">
-        <p ng-if="edit==false" class="text-center"><strong>Add drink</strong></p>
-        <p ng-if="edit==true" class="text-center"><strong>Update drink</strong></p>
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input required type="text" ng-model="tmp.name" class="form-control" id="name" placeholder="Please input name">
-        </div>
-        <div class="form-group">
-            <label for="price">Price</label>
-            <input required type="number" ng-model="tmp.price" class="form-control" id="price" placeholder="Please input price">
+<div class="row">
+    <div class="col-sm-8 col-md-9 col-lg-9 main">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="text-center">
+                        <button ng-click="selectType('drink')" type="button" class="btn btn-default btn-sm">Drink</button>
+                        <button ng-click="selectType('bakery')" type="button" class="btn btn-default btn-sm">Bakery</button>
+                    </p>
+                    <p class="text-center" ng-if="selectedtype == 'drink'">
+                        <span ng-repeat="data in drinktype"> 
+                            <button ng-click="selectSubType(data.name)" type="button" class="btn btn-default btn-sm">{{data.name}} </button> 
+                        </span>
+                    </p>
+                    <p class="text-center" ng-if="selectedtype == 'bakery'">
+                        <span ng-repeat="data in bakerytype"> 
+                            <button ng-click="selectSubType(data.name)" type="button" class="btn btn-default btn-sm">{{data.name}} </button> 
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3" ng-repeat="data in type | filter:selectedsubtype">
+                    {{data.name}}
+                </div>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label for="type">Type</label>
-            <select class="form-control" required="required" ng-model="tmp.type">
-                      <option value="" disabled >-- Select --</option> 
-                      <option ng-repeat="option in drinktype" value="{{option.name}}" >{{option.name}}</option>  
-            </select>
-        </div>
-        <div class="form-group">
-            <p class="text-center">
-                <button type="submit" ng-if="show==true && edit==false" class="btn btn-primary"> <span class="glyphicon glyphicon-plus"></span> Add </button>
-                <button type="submit" ng-if="edit==true" class="btn btn-primary"> <span class="glyphicon glyphicon-pencil"></span> Update </button>
-            </p>
-        </div>
-    </form>
+    </div>
+    <div class="col-sm-4 col-md-3 col-lg-3 sidebar">
+
+    </div>
 </div>
