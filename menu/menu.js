@@ -80,7 +80,18 @@ app.controller('menuController', function($scope, FBoperation, DBoperation, $roo
     };
 
 
-
+    $scope.confirmOrder = function() {
+        var tmp = {};
+        tmp.name = $rootScope.user.email;
+        tmp.orderstatus = '';
+        tmp.list = $scope.oLists;
+        $scope.order = FBoperation.getData('order');
+        $scope.order.$loaded()
+            .then(function() {
+                $scope.order.$add(tmp);
+            });
+        $scope.resetOrderList();
+    };
 
     $scope.resetMenu = function() {
         $scope.selectType('bakery');
