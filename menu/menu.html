@@ -56,7 +56,10 @@
                 </tr>
             </tbody>
         </table>
-
+        <div class="text-center" ng-show="oLists.length > 0">
+            Total {{total}} baht
+        </div>
+        <br>
         <div class="text-center" ng-show="oLists.length > 0">
             <button ng-click="confirmOrder();" type="button" class="btn btn-default btn-sm">Confirm Order</button>
         </div>

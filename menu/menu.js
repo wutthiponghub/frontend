@@ -80,6 +80,14 @@ app.controller('menuController', function($scope, FBoperation, DBoperation, $roo
         console.log($scope.oLists);
     };
 
+    $scope.calculateTotal = function() {
+        var sum = 0;
+        for (i = 0; i < $scope.oLists.length; i++) {
+            sum = sum + $scope.oLists[i].price;
+        }
+        $scope.total = sum;
+        console.log($scope.total);
+    };
 
 
 
