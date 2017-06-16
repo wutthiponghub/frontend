@@ -1,43 +1,25 @@
-<h2>history</h2>
+<h2 ng-if="totalsum">Total Amount {{totalsum}}</h2>
 <table id="historytable" class="table table-hover table-bordered" cellspacing="0" width="100%">
-    <thead>
+    <tbody ng-repeat="data in history">
         <tr>
+            <th>Bill No.{{$index+1}}</th>
             <th>Name</th>
-            <th>Price</th>
-            <th>Status</th>
+            <th>Total {{total[$index]}}</th>
+            <th>{{data.orderstatus}}</th>
         </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="data in history">
-            <td>{{data.name}}</td>
+
+        <tr ng-repeat="list in data.list">
+            <td>{{$index+1}}</td>
+            <td>{{list.name}}</td>
+            <td>{{list.price}}</td>
             <td>
-                <table class="table table-condensed">
-                    <thead>
-                        <tr>
-                            <th>No.</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="list in data.list">
-                            <td>{{$index+1}}</td>
-                            <td>{{list.name}}</td>
-                            <td>{{list.price}}</td>
-                            <td>
-                                <a ng-if="list.status=='request'" ng-click="cancelItem(list.no,data.$id)" class="pointer">
-                                    {{list.status}}
-                                </a>
-                                <span ng-if="list.status=='cancel'">
-                                    {{list.status}}
-                                </span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <a ng-if="list.status=='request'" ng-click="cancelItem(list.no,data.$id)" class="pointer">
+                     {{list.status}}
+                </a>
+                <span ng-if="list.status=='cancel'">
+                     {{list.status}}
+                </span>
             </td>
-            <td>{{data.orderstatus}}</td>
         </tr>
     </tbody>
 </table>

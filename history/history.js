@@ -4,6 +4,7 @@ app.controller('historyController', function($scope, FBoperation, $rootScope) {
     $scope.history.$loaded()
         .then(function() {
             console.log($scope.history);
+            $scope.calculateTotal();
         });
 
 
@@ -23,6 +24,24 @@ app.controller('historyController', function($scope, FBoperation, $rootScope) {
         })
     };
 
+    $scope.calculateTotal = function() {
+        var sum = [];
 
+        for (i = 0; i < $scope.history.length; i++) {
+            sum[i] = 0;
+            for (j = 0; j < $scope.history[i].list.length; j++) {
+                console.log($scope.history[i].list[j].price);
+                sum[i] = sum[i] + $scope.history[i].list[j].price;
+            }
+            console.log(sum[i]);
+
+        }
+        $scope.total = sum;
+        $scope.totalsum = 0;
+        console.log($scope.total);
+        for (j = 0; j < $scope.total.length; j++) {
+            $scope.totalsum = $scope.totalsum + $scope.total[j];
+        }
+    };
 
 });
