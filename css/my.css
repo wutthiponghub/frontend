@@ -22,3 +22,7 @@ body {
     background-color: lightyellow;
     height: 100vh;
 }
+
+.pointer {
+    cursor: pointer;
+}

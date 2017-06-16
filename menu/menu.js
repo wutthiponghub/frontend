@@ -1,4 +1,4 @@
-app.controller('menuController', function($scope, FBoperation, DBoperation) {
+app.controller('menuController', function($scope, FBoperation, DBoperation, $rootScope) {
 
 
 
@@ -61,10 +61,36 @@ app.controller('menuController', function($scope, FBoperation, DBoperation) {
     // });
 
 
-    $scope.resetMenu = function() {
-        $scope.selectType('bakery');
+    $scope.selectItem = function(item) {
+        $scope.count++;
+
+        var data = { "no": $scope.count, "name": item.name, "price": parseFloat(item.price), "status": 'request' };
+        $scope.oLists.push(data);
+        console.log($scope.oLists);
+
     };
 
+    $scope.removeItem = function(item) {
+        for (i = 0; i < $scope.oLists.length; i++) {
+            if ($scope.oLists[i].no == item.no) {
+                $scope.oLists.splice(i, 1);
+            }
+        }
+        console.log($scope.oLists);
+    };
+
+
+
+
+    $scope.resetMenu = function() {
+        $scope.selectType('bakery');
+        $scope.resetOrderList();
+    };
+
+    $scope.resetOrderList = function() {
+        $scope.oLists = [];
+        $scope.count = 0;
+    };
 
 
 

@@ -14,14 +14,14 @@ app.controller('authController', function($scope, Auth, $location, $rootScope) {
     });
     $scope.signIn = function() {
         Auth.$signInAnonymously().then(function() {
-            $location.path('/profile')
+            $location.path('/menu')
         }).catch(function(error) {
             $rootScope.error = error;
         });
     };
     $scope.signInWithEmailPassword = function() {
         Auth.$signInWithEmailAndPassword($scope.email, $scope.password).then(function() {
-            $location.path('/profile')
+            $location.path('/menu')
         }).catch(function(error) {
             $rootScope.error = error;
         });
@@ -29,7 +29,7 @@ app.controller('authController', function($scope, Auth, $location, $rootScope) {
 
     $scope.signInWithFacebook = function() {
         Auth.$signInWithPopup('facebook').then(function() {
-            $location.path('/profile')
+            $location.path('/menu')
         }).catch(function(error) {
             $rootScope.error = error;
         });

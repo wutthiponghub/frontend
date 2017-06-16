@@ -5,12 +5,16 @@ app.config(function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
     $routeProvider
         .when("/", {
-            templateUrl: "menu/menu.html",
-            controller: "menuController"
+            templateUrl: "auth/auth.html",
+            controller: "authController"
         })
         .when("/menu", {
             templateUrl: "menu/menu.html",
             controller: "menuController"
+        })
+        .when("/profile", {
+            templateUrl: "profile/profile.html",
+            controller: "profileController"
         })
         .otherwise({
             redirectTo: '/'

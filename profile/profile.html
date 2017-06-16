@@ -1,6 +1,6 @@
 <div class="text-center">
     <p ng-if="uid">Signed in user: <strong>{{ uid }} {{user.email}}</strong></p>
-    <p><img src="{{user.photoURL}}"></p>
+    <p ng-if="user.photoURL"><img ng-src="{{user.photoURL}}"></p>
     <div ng-show="uid">
         <button ng-click="signOut()">Sign Out</button>
     </div>
