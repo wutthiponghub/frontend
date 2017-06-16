@@ -26,6 +26,7 @@ app.controller('menuController', function($scope, FBoperation, DBoperation, $roo
         function(data) {
             console.log(data);
             $scope.bakery = data;
+            $scope.selectType('bakery');
         },
         function(error) {
             console.log(error);
@@ -63,11 +64,10 @@ app.controller('menuController', function($scope, FBoperation, DBoperation, $roo
 
     $scope.selectItem = function(item) {
         $scope.count++;
-
         var data = { "no": $scope.count, "name": item.name, "price": parseFloat(item.price), "status": 'request' };
         $scope.oLists.push(data);
         console.log($scope.oLists);
-
+        $scope.calculateTotal();
     };
 
     $scope.removeItem = function(item) {
@@ -76,18 +76,23 @@ app.controller('menuController', function($scope, FBoperation, DBoperation, $roo
                 $scope.oLists.splice(i, 1);
             }
         }
+        $scope.calculateTotal();
         console.log($scope.oLists);
     };
+
+
 
 
     $scope.confirmOrder = function() {
         var tmp = {};
         tmp.name = $rootScope.user.email;
-        tmp.orderstatus = '';
+        tmp.orderstatus = 'Waiting';
         tmp.list = $scope.oLists;
+
         $scope.order = FBoperation.getData('order');
         $scope.order.$loaded()
             .then(function() {
+                console.log(tmp);
                 $scope.order.$add(tmp);
             });
         $scope.resetOrderList();
@@ -95,12 +100,15 @@ app.controller('menuController', function($scope, FBoperation, DBoperation, $roo
 
     $scope.resetMenu = function() {
         $scope.selectType('bakery');
-        $scope.resetOrderList();
+        $scope.oLists = [];
+        $scope.count = 0;
+        $scope.total = 0;
     };
 
     $scope.resetOrderList = function() {
         $scope.oLists = [];
         $scope.count = 0;
+        $scope.total = 0;
     };
 
 
