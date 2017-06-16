@@ -12,6 +12,10 @@ app.config(function($routeProvider, $locationProvider) {
             templateUrl: "menu/menu.html",
             controller: "menuController"
         })
+        .when("/history", {
+            templateUrl: "history/history.html",
+            controller: "historyController"
+        })
         .when("/profile", {
             templateUrl: "profile/profile.html",
             controller: "profileController"
