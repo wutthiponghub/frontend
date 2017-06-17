@@ -16,7 +16,7 @@
                 <a ng-if="list.status=='request'" ng-click="cancelItem(list.no,data.$id)" class="pointer">
                      {{list.status}}
                 </a>
-                <span ng-if="list.status=='cancel'">
+                <span ng-if="list.status!='request'">
                      {{list.status}}
                 </span>
             </td>

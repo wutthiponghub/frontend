@@ -20,6 +20,10 @@ app.config(function($routeProvider, $locationProvider) {
             templateUrl: "profile/profile.html",
             controller: "profileController"
         })
+        .when("/admin", {
+            templateUrl: "admin/admin.html",
+            controller: "adminController"
+        })
         .otherwise({
             redirectTo: '/'
         });
@@ -116,6 +120,7 @@ app.filter('changeKeytoText', function() {
         }
     }
 });
+
 
 
 
