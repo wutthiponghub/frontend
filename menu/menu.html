@@ -49,9 +49,10 @@
                     <td>{{data.name}}</td>
                     <td>{{data.price}}</td>
                     <td>
-                        <a ng-click="removeItem(data)">
+                        <a ng-show="data.status != 'confirm'" ng-click="removeItem(data)">
                             <span class="glyphicon glyphicon-trash pointerlink"></span>
                         </a>
+                        <span ng-show="data.status == 'confirm'" class="glyphicon glyphicon-ok"></span>
                     </td>
                 </tr>
             </tbody>
@@ -61,7 +62,8 @@
         </div>
         <br>
         <div class="text-center" ng-show="oLists.length > 0">
-            <button ng-click="confirmOrder();" type="button" class="btn btn-default btn-sm">Confirm Order</button>
+            <button ng-if="button == 'add'" ng-click="confirmOrder();" type="button" class="btn btn-default btn-sm">Confirm Order</button>
+            <button ng-if="button == 'update'" ng-click="updateOrder();" type="button" class="btn btn-default btn-sm">Update Order</button>
         </div>
     </div>
 </div>

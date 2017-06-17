@@ -91,6 +91,7 @@ app.controller('menuController', function($scope, FBoperation, DBoperation, $roo
 
 
 
+
     $scope.confirmOrder = function() {
         var tmp = {};
         tmp.name = $rootScope.user.email;
@@ -101,23 +102,58 @@ app.controller('menuController', function($scope, FBoperation, DBoperation, $roo
         $scope.order.$loaded()
             .then(function() {
                 console.log(tmp);
-                $scope.order.$add(tmp);
+                $scope.order.$add(tmp).then(function(ref) {
+                    var id = ref.key;
+                    $scope.justAddID = $scope.order.$indexFor(id); // returns location in the array
+
+                });
             });
+        $scope.order.$watch(function(a) {
+            console.log(a);
+            angular.forEach($scope.order, function(value) {
+                console.log(value);
+
+                if (value.$id == $scope.order.$keyAt($scope.justAddID)) {
+                    $scope.oLists = value.list;
+                }
+                console.log($scope.oLists);
+            })
+        });
         $scope.resetOrderList();
     };
+
+    $scope.updateOrder = function() {
+        angular.forEach($scope.order, function(value) {
+            if (value.$id == $scope.order.$keyAt($scope.justAddID)) {
+                value.list = $scope.oLists;
+                $scope.order.$save(value).then(function(ref) {
+                    var id = ref.key;
+                    $scope.justAddID = $scope.order.$indexFor(id); // returns location in the array
+
+                });
+            }
+        })
+    };
+
 
     $scope.resetMenu = function() {
         $scope.selectType('bakery');
         $scope.oLists = [];
         $scope.count = 0;
         $scope.total = 0;
+        $scope.button = 'add';
     };
 
+
     $scope.resetOrderList = function() {
-        $scope.oLists = [];
-        $scope.count = 0;
-        $scope.total = 0;
+
+        // $scope.count = 0;
+        // $scope.total = 0;
+
+        $scope.button = 'update';
     };
+
+
 
 
 

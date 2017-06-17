@@ -41,10 +41,26 @@ app.controller('historyController', function($scope, FBoperation, $rootScope) {
 
         }
         $scope.total = sum;
-        $scope.totalsum = 0;
-        console.log($scope.total);
-        for (j = 0; j < $scope.total.length; j++) {
-            $scope.totalsum = $scope.totalsum + $scope.total[j];
+        var already = [];
+        for (i = 0; i < $scope.history.length; i++) {
+            already[i] = true;
+            for (j = 0; j < $scope.history[i].list.length; j++) {
+                if ($scope.history[i].list[j].status == 'request') {
+                    already[i] = false;
+                }
+            }
+            console.log(sum[i]);
+            console.log(already[i]);
+            var tmp = $scope.history[i];
+            if (already[i] == true) {
+                tmp.orderstatus = 'Already';
+                tmp.total = $scope.total[i];
+                $scope.history.$save(tmp);
+            } else {
+                tmp.orderstatus = 'Waiting';
+                tmp.total = $scope.total[i];
+                $scope.history.$save(tmp);
+            }
         }
     };
 
