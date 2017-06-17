@@ -1,11 +1,24 @@
-app.controller('authController', function($scope, Auth, $location, $rootScope) {
+app.controller('authController', function($scope, Auth, $location, $rootScope, FBoperation) {
     console.log(Auth);
-    console.log($rootScope.user);
     Auth.$onAuthStateChanged(function(user) {
         if (user) {
             // User is signed in.
+            $rootScope.role = '';
             $rootScope.user = user;
             $rootScope.uid = user.uid;
+            $scope.admin = FBoperation.getDataEqualto('users', 'role', 'admin');
+            console.log($scope.admin);
+            $scope.admin.$loaded()
+                .then(function() {
+                    angular.forEach($scope.admin, function(value) {
+                        if (value.email == user.email) {
+                            console.log('admin');
+                            $rootScope.role = 'admin';
+                        }
+                    })
+                });
+
+
             console.log(user);
         } else {
             // User is signed out.

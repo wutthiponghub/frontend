@@ -18,6 +18,7 @@ app.controller('historyController', function($scope, FBoperation, $rootScope) {
                     if (value.list[i].no == listNo) {
                         value.list[i].status = 'cancel';
                         $scope.history.$save(value);
+                        $scope.calculateTotal();
                     }
                 }
             }
@@ -31,8 +32,11 @@ app.controller('historyController', function($scope, FBoperation, $rootScope) {
             sum[i] = 0;
             for (j = 0; j < $scope.history[i].list.length; j++) {
                 console.log($scope.history[i].list[j].price);
-                sum[i] = sum[i] + $scope.history[i].list[j].price;
+                if ($scope.history[i].list[j].status != 'cancel') {
+                    sum[i] = sum[i] + $scope.history[i].list[j].price;
+                }
             }
+
             console.log(sum[i]);
 
         }
